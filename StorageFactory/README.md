@@ -16,7 +16,7 @@ This is part of the Cyfrin Solidity Blockchain Course.
 For a more in depth blog on working with remix, read [here](https://docs.chain.link/docs/deploy-your-first-contract/).
 
 ## Lesson Learned
-###### Write & Read in EVM
+##### Write & Read in EVM
 1. Write & Read
 
 These are locations where the EVM (Ethereum Virtual Machine) can both write data and read data back:
@@ -64,7 +64,7 @@ Locations where the EVM can only read data:
 - (Other)
     - Refers to additional sources of read-only data like precompiled contract data or protocol-specific parameters.
 
-###### Value Types vs Reference Types
+##### Value Types vs Reference Types
 1. Value Types
 
 Types like uint256, bool, int, and address store their data directly and do not need a specific data location (e.g., memory, storage, calldata).
@@ -73,7 +73,7 @@ Types like uint256, bool, int, and address store their data directly and do not 
 
 Types like string, bytes, array, and struct require a data location (memory, storage, calldata) because they store references to their data.
 
-###### Other Notes
+##### Other Notes
 - There is no floating point in Solidity. You should keep numbers in whole number format. You can place decimal place in your front-end code. Take a look at how ERC20 contract was designed.
 - Contract is like as class in other programming language.
 - Keep the solidity version the same in a project!
