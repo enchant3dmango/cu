@@ -33,10 +33,11 @@ A Solidity constructor is a special function that runs only once when the contra
 
 ##### Function Modifiers
 In Solidity, function modifiers are reusable code blocks that you can use to add logic before, after, or around a function's execution. They help enforce rules or conditions for specific functions, making the code cleaner and more secure.
+
 Key Features?
-	- Reusable: Write a modifier once, use it in multiple functions.
-	- Precondition Check: Ensures a condition is met before running the function.
-	- Customizable Logic: Can modify how and when a function executes.
+- Reusable: Write a modifier once, use it in multiple functions.
+- Precondition Check: Ensures a condition is met before running the function.
+- Customizable Logic: Can modify how and when a function executes.
 
 ###### Example
 ```solidity
