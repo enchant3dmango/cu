@@ -11,7 +11,7 @@ contract ZkSyncDevOps is Test, ZkSyncChainChecker, FoundryZkSyncChecker {
         address ripemd = address(uint160(3));
 
         bool success;
-        // Don't worry about what this "assembly" thing is for now
+        // https://docs.soliditylang.org/en/stable/assembly.html
         assembly {
             success := call(gas(), ripemd, 0, 0, 0, 0, 0)
         }
@@ -19,9 +19,8 @@ contract ZkSyncDevOps is Test, ZkSyncChainChecker, FoundryZkSyncChecker {
     }
 
     // You'll need `ffi=true` in your foundry.toml to run this test
-    // // Remove the `onlyVanillaFoundry`, then run `foundryup-zksync` and then
-    // // `forge test --mt testZkSyncFoundryFails --zksync`
-    // // and this will fail!
+    // Remove the `onlyVanillaFoundry`, then run `foundryup-zksync` and then
+    // `forge test --mt testZkSyncFoundryFails --zksync` and this will fail!
     // function testZkSyncFoundryFails() public onlyVanillaFoundry {
     //     bool exists = vm.keyExistsJson('{"hi": "true"}', ".hi");
     //     assert(exists);

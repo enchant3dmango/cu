@@ -8,12 +8,12 @@ library PriceConverter {
         AggregatorV3Interface priceFeed
     ) internal view returns (uint256) {
         (, int256 answer, , , ) = priceFeed.latestRoundData();
-        // ETH/USD rate in 18 digit
+        // ETH / USD rate in 18-digit
         return uint256(answer * 10000000000);
     }
 
     // 1000000000
-    // call it get fiatConversionRate, since it assumes something about decimals
+    // Call it get fiatConversionRate, since it assumes something about decimals
     // It wouldn't work for every aggregator
     function getConversionRate(
         uint256 ethAmount,
@@ -21,7 +21,7 @@ library PriceConverter {
     ) internal view returns (uint256) {
         uint256 ethPrice = getPrice(priceFeed);
         uint256 ethAmountInUsd = (ethPrice * ethAmount) / 1000000000000000000;
-        // the actual ETH/USD conversation rate, after adjusting the extra 0s.
+        // The actual ETH / USD conversation rate, after adjusting the extra 0s
         return ethAmountInUsd;
     }
 }

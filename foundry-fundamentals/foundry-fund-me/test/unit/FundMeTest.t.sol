@@ -13,15 +13,16 @@ contract FundMeTest is ZkSyncChainChecker, CodeConstants, StdCheats, Test {
     FundMe public fundMe;
     HelperConfig public helperConfig;
 
-    uint256 public constant SEND_VALUE = 0.1 ether; // just a value to make sure we are sending enough!
+    // 0.1 ether equals 1000000000000000000 wei
+    // We can write it like this:
+    // uint256 public constant SEND_VALUE = 1e18;
+    // uint256 public constant SEND_VALUE = 1_000_000_000_000_000_000;
+    // uint256 public constant SEND_VALUE = 1000000000000000000;
+    uint256 public constant SEND_VALUE = 0.1 ether; // Just a value to make sure we are sending enough!
     uint256 public constant STARTING_USER_BALANCE = 10 ether;
     uint256 public constant GAS_PRICE = 1;
 
     address public constant USER = address(1);
-
-    // uint256 public constant SEND_VALUE = 1e18;
-    // uint256 public constant SEND_VALUE = 1_000_000_000_000_000_000;
-    // uint256 public constant SEND_VALUE = 1000000000000000000;
 
     function setUp() external {
         if (!isZkSyncChain()) {
@@ -70,7 +71,6 @@ contract FundMeTest is ZkSyncChainChecker, CodeConstants, StdCheats, Test {
     }
 
     // https://twitter.com/PaulRBerg/status/1624763320539525121
-
     modifier funded() {
         vm.prank(USER);
         fundMe.fund{value: SEND_VALUE}();
@@ -89,15 +89,10 @@ contract FundMeTest is ZkSyncChainChecker, CodeConstants, StdCheats, Test {
         uint256 startingFundMeBalance = address(fundMe).balance;
         uint256 startingOwnerBalance = fundMe.getOwner().balance;
 
-        // vm.txGasPrice(GAS_PRICE);
-        // uint256 gasStart = gasleft();
-        // // Act
+        // Act
         vm.startPrank(fundMe.getOwner());
         fundMe.withdraw();
         vm.stopPrank();
-
-        // uint256 gasEnd = gasleft();
-        // uint256 gasUsed = (gasStart - gasEnd) * tx.gasprice;
 
         // Assert
         uint256 endingFundMeBalance = address(fundMe).balance;
@@ -118,8 +113,8 @@ contract FundMeTest is ZkSyncChainChecker, CodeConstants, StdCheats, Test {
             i < numberOfFunders + startingFunderIndex;
             i++
         ) {
-            // we get hoax from stdcheats
-            // prank + deal
+            // hoax = prank + deal
+            // https://book.getfoundry.sh/reference/forge-std/hoax
             hoax(address(i), STARTING_USER_BALANCE);
             fundMe.fund{value: SEND_VALUE}();
         }
